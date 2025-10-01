@@ -38,7 +38,7 @@ const IssuesManagement = ({ fetchPromise }) => {
                   
                </div>
                <div className="flex flex-col w-full">
-  <div className="flex">
+  <div className="flex-1">
     <h2 className="font-semibold text-[#34485A] text-[20px] md:text-[24px] mb-2">
       Task Status
     </h2>
@@ -67,7 +67,7 @@ const IssuesManagement = ({ fetchPromise }) => {
       </div>
     )}
   </div>
-  <div className="flex">
+  <div className="flex-1">
     <h2 className="font-semibold text-[#34485A] text-[20px] md:text-[24px] mb-2">
       Resolved Task
     </h2>
