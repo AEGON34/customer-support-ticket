@@ -37,41 +37,68 @@ const IssuesManagement = ({ fetchPromise }) => {
             </div>
                   
                </div>
-               <div className='flex flex-col top-0 '>
-                   <div>
-                    <h2 className="font-semibold text-[#34485A] text-[24px]">Task Status</h2>
-                     {
-                        data.filter(element=>element.status=="In- Progress").length>0?
-                        data.filter(element=>element.status=="In- Progress").map((issue)=>{
-                            return(
-                                <div className='h-[120px] w-[300px] mb-2 p-1 border rounded-md shadow-md ' >
-                                    <h2 className='font-bold text-[18px] text-[#001931]'>{issue.title}</h2>
-                                    <button className='bg-green-700 p-3 w-full my-2 rounded-xl cursor-pointer ' onClick={()=>handlecomplete(issue)}>Complete</button>
-                                </div>
-                            )
-                        }):<div className='h-[70px] w-[300px] mb-2 p-1 border rounded-md shadow-md '><p className='text-black mt-1 text-xs font-semibold flex  justify-center items-center'>No task in progress</p></div>
-                    }
-                   
-                   </div>
-                  <div>
-                     <h2 className="font-semibold text-[#34485A] text-[24px]">Resolved  Task </h2>
-                       {
-                    resolvedTask.length>0?resolvedTask.map(issue=>{
-                        return (
-                            <div>
-                                 <h1 className='text-black text-bold bg-[#E0E7FF] text-2xl p-2 rounded-xl my-2'>{issue.title}</h1>
-                                 <div className='flex justify-between items-center'>
-                                    <p className='font-semibold text-green-600'>Completed</p>
-                                    <button onClick={() => handleremove(issue)} className='font-thin text-gray-700 cursor-pointer'>Click to remove</button>
-                                 </div>
-                            </div>
-                    
-                        )
+               <div className="flex flex-col w-full">
+  <div className="flex">
+    <h2 className="font-semibold text-[#34485A] text-[20px] md:text-[24px] mb-2">
+      Task Status
+    </h2>
+    {data.filter((el) => el.status === "In- Progress").length > 0 ? (
+      data
+        .filter((el) => el.status === "In- Progress")
+        .map((issue) => (
+          <div
+            key={issue.id}
+            className="w-full md:max-w-[300px] h-auto md:h-[120px] mb-3 p-3 border rounded-md shadow-md"
+          >
+            <h2 className="font-bold text-[16px] md:text-[18px] text-[#001931]">
+              {issue.title}
+            </h2>
+            <button
+              className="bg-green-700 p-2 md:p-3 w-full mt-2 rounded-xl text-white cursor-pointer"
+              onClick={() => handlecomplete(issue)}
+            >
+              Complete
+            </button>
+          </div>
+        ))
+    ) : (
+      <div className="w-full md:max-w-[300px] h-[70px] mb-2 p-2 border rounded-md shadow-md flex justify-center items-center">
+        <p className="text-black text-xs font-semibold">No task in progress</p>
+      </div>
+    )}
+  </div>
+  <div className="flex">
+    <h2 className="font-semibold text-[#34485A] text-[20px] md:text-[24px] mb-2">
+      Resolved Task
+    </h2>
+    {resolvedTask.length > 0 ? (
+      resolvedTask.map((issue) => (
+        <div
+          key={issue.id}
+          className="w-full md:max-w-[300px] mb-3 p-3 border rounded-md shadow-md"
+        >
+          <h1 className="text-black font-bold bg-[#E0E7FF] text-lg md:text-2xl p-2 rounded-xl mb-2">
+            {issue.title}
+          </h1>
+          <div className="flex justify-between items-center">
+            <p className="font-semibold text-green-600">Completed</p>
+            <button
+              onClick={() => handleremove(issue)}
+              className="text-gray-700 text-sm hover:underline"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      ))
+    ) : (
+      <div className="w-full md:max-w-[300px] h-[70px] mb-2 p-2 border rounded-md shadow-md flex justify-center items-center">
+        <p className="text-black text-xs font-semibold">No task resolved yet</p>
+      </div>
+    )}
+  </div>
+</div>
 
-                    }):<div className='h-[70px] w-[300px] mb-2 p-1 border rounded-md shadow-md '><p className='text-black mt-1 text-xs font-semibold flex  justify-center items-center'>No task resolved yet</p></div>
-                }
-                  </div>
-               </div>
                </div>
         </div>
     )
